@@ -3,7 +3,7 @@ import { useState } from "react";
 const NavBar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   return (
-    <div className="navbar bg-neutral flex justify-between text-slate-200">
+    <div className="navbar bg-neutral flex h-20 w-full justify-between px-10 text-slate-200">
       <div>
         <a href="/" className="text-xl">
           Tid För Tvätt
@@ -17,7 +17,7 @@ const NavBar = () => {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
+              <div className="size-12 rounded-full">
                 <img
                   alt="Inloggad användare"
                   src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
@@ -26,7 +26,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-max p-2 text-slate-600 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-max p-2 text-slate-600 shadow"
             >
               <li>
                 <a className="justify-between">Profil</a>
