@@ -1,23 +1,28 @@
 import { useState } from "react";
 
-const NavBar = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+const NavBar = ({
+  loggedIn,
+  setLoggedIn,
+}: {
+  loggedIn: boolean;
+  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
-    <div className="navbar bg-neutral flex h-20 w-full justify-between px-10 text-slate-200">
+    <div className="navbar flex h-20 w-full justify-between bg-neutral px-10 text-slate-200">
       <div>
         <a href="/" className="text-xl">
           Tid För Tvätt
         </a>
       </div>
-      <div className="flex-none">
-        {loggedIn ? (
+      <div>
+        {loggedIn && (
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="xs:relative avatar btn-circle"
             >
-              <div className="size-12 rounded-full">
+              <div className="w-14 rounded-full">
                 <img
                   alt="Inloggad användare"
                   src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
@@ -25,21 +30,23 @@ const NavBar = () => {
               </div>
             </div>
             <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-max p-2 text-slate-600 shadow"
+              tabIndex={1}
+              className="dropdown-content menu-md z-[1] mt-4 w-max bg-base-100 p-2 text-slate-600 shadow"
             >
               <li>
-                <a className="justify-between">Profil</a>
+                <a className="cursor-pointer">Profil</a>
               </li>
               <li>
-                <a onClick={() => setLoggedIn(false)}>Logga ut</a>
+                <a
+                  className="cursor-pointer"
+                  onClick={() => setLoggedIn(false)}
+                  href="/"
+                >
+                  Logga ut
+                </a>
               </li>
             </ul>
           </div>
-        ) : (
-          <a className="cursor-pointer" onClick={() => setLoggedIn(true)}>
-            Logga In
-          </a>
         )}
       </div>
     </div>
