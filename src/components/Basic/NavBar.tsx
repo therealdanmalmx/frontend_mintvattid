@@ -11,7 +11,11 @@ const NavBar = ({
     <div className="navbar flex h-20 w-full justify-between bg-neutral px-6 text-slate-200 md:px-10">
       <div>
         <Link to="/" className="text-xl">
-          Tid För Tvätt
+          <img
+            src="/src/assets/img/tvattid_logo.webp"
+            alt=""
+            style={{ height: "50px" }}
+          />
         </Link>
       </div>
       <div>
@@ -28,6 +32,7 @@ const NavBar = ({
                   src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                 />
               </div>
+              <span className="text-white">Min Tvätt</span>
             </div>
             <ul
               tabIndex={1}

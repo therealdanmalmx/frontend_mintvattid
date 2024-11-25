@@ -1,6 +1,6 @@
 import React from "react";
 import RegistrationForm from "./RegistrationForm";
-import { ChevronLeft, ArrowLeftCircle } from "react-feather";
+import { ArrowLeftCircle } from "react-feather";
 import { Link } from "react-router";
 
 const RegisterUser = () => {
