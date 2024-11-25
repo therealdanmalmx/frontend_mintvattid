@@ -40,5 +40,5 @@ export async function registerUser(
   // For this example, we'll just simulate a successful registration
   await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
 
-  return { success: "Registration successful! You can now log in." };
+  return { success: "Registreringen lyckades! Du kan nu logga in." };
 }

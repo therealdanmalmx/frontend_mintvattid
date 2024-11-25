@@ -17,55 +17,52 @@ const RegistrationForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label htmlFor="firstname">Förnamn</label>
-        <input
-          type="text"
-          placeholder="Type here"
-          name="firstname"
-          className="input input-bordered w-full max-w-xs"
-          required
-        />
+    <form onSubmit={handleSubmit} className="w-full">
+      <div className="space-y-2">
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text font-bold">Förnamn</span>
+          </div>
+          <input type="text" className="input input-bordered" />
+        </label>
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text font-bold">Efternamn</span>
+          </div>
+          <input type="text" className="input input-bordered" />
+        </label>
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text font-bold">Email</span>
+          </div>
+          <input type="email" className="input input-bordered" />
+        </label>
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text font-bold">Användarnamn</span>
+          </div>
+          <input type="email" className="input input-bordered" />
+        </label>
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text font-bold">Lösenord</span>
+          </div>
+          <input type="password" className="input input-bordered" />
+        </label>
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text font-bold">Upprepa lösenord</span>
+          </div>
+          <input type="password" className="input input-bordered" />
+        </label>
       </div>
-      <div>
-        <label htmlFor="lastname">Efternamn</label>
-        <input
-          type="text"
-          placeholder="Type here"
-          name="lastname"
-          className="input input-bordered w-full max-w-xs"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input name="email" type="email" required placeholder="Email" />
-      </div>
-      <div>
-        <label htmlFor="username">Användarnmn</label>
-        <input
-          name="email"
-          type="email"
-          required
-          placeholder="Email är standard. Ändra om du vill."
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input id="password" name="password" type="password" required />
-      </div>
-      <div>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input
-          id="confirmPassword"
-          name="confirmPassword"
-          type="password"
-          required
-        />
-      </div>
-      <button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? "Registering..." : "Register"}
+
+      <button
+        type="submit"
+        className="btn btn-primary mt-16 w-full text-white md:mt-8"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Registering..." : "Registrera dig"}
       </button>
       {/* {state && state.error && (
         <p className="mt-2 text-sm text-red-500">{state.error}</p>
