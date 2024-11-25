@@ -3,8 +3,9 @@ import "./App.css";
 import NavBar from "./components/Basic/NavBar";
 import LandingPage from "./components/Basic/Landing/LandingPage";
 import RegisterUser from "./components/Basic/Register/RegisterUser";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import endpoints from "./enpoints";
+import { BrowserRouter as Router, Route, Routes } from "react-router";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -17,22 +18,18 @@ function App() {
     };
     getAllProperties();
   }, []);
+
   return (
-    <div className="flex h-screen w-full flex-col">
-      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      {!loggedIn && (
-        <>
-          {/* <LandingPage /> */}
-          <RegisterUser />
-        </>
-        // <button
-        //   onClick={() => setLoggedIn(true)}
-        //   className="btn btn-primary mx-auto my-auto"
-        // >
-        //   Logga In
-        // </button>
-      )}
-    </div>
+    <Router>
+      <div className="flex h-screen w-full flex-col">
+        <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<RegisterUser />} />
+          {/* Add more routes here as needed */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

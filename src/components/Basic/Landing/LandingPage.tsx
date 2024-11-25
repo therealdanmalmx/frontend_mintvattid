@@ -1,6 +1,8 @@
+import { Link } from "react-router";
+
 export default function LandingPage() {
   return (
-    <div className="bg-laundry-room h-dvh overflow-hidden bg-slate-200 bg-opacity-90 bg-cover bg-center bg-blend-overlay">
+    <div className="h-dvh overflow-hidden bg-slate-200 bg-opacity-90 bg-laundry-room bg-cover bg-center bg-blend-overlay">
       <div className="container mx-auto flex h-full flex-col justify-between px-4 py-12 text-center md:justify-center">
         <div className="space-y-8">
           <h1 className="mt-12 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:mt-0 md:text-6xl">
@@ -14,10 +16,10 @@ export default function LandingPage() {
         </div>
         <div className="bottom-0 flex flex-col items-center justify-center gap-4 sm:flex-row md:mt-8">
           <button className="text-wh btn btn-primary btn-wide text-base text-white">
-            <a href="/register">Registrera dig</a>
+            <Link to="/register">Registrera dig</Link>
           </button>
           <button className="btn btn-outline btn-wide text-base">
-            <a href="/login">Logga in</a>
+            <Link to="/login">Logga in</Link>
           </button>
         </div>
       </div>

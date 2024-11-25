@@ -59,7 +59,7 @@ const RegistrationForm = () => {
 
       <button
         type="submit"
-        className="btn btn-primary mt-16 w-full text-white md:mt-8"
+        className="btn btn-primary mt-8 w-full text-white md:mt-8"
         disabled={isSubmitting}
       >
         {isSubmitting ? "Registering..." : "Registrera dig"}

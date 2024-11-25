@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const NavBar = ({
   loggedIn,
   setLoggedIn,
@@ -6,11 +8,11 @@ const NavBar = ({
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
-    <div className="navbar flex h-20 w-full justify-between bg-neutral px-10 text-slate-200">
+    <div className="navbar flex h-20 w-full justify-between bg-neutral px-6 text-slate-200 md:px-10">
       <div>
-        <a href="/" className="text-xl">
+        <Link to="/" className="text-xl">
           Tid För Tvätt
-        </a>
+        </Link>
       </div>
       <div>
         {loggedIn && (
@@ -32,16 +34,18 @@ const NavBar = ({
               className="dropdown-content menu-md z-[1] mt-4 w-max bg-base-100 p-2 text-slate-600 shadow"
             >
               <li>
-                <a className="cursor-pointer">Profil</a>
+                <Link to="/profile" className="cursor-pointer">
+                  Profil
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   className="cursor-pointer"
                   onClick={() => setLoggedIn(false)}
-                  href="/"
+                  to="/"
                 >
                   Logga ut
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
