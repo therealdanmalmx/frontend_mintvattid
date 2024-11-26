@@ -8,12 +8,20 @@ export const schema = z
       .string()
       .min(3, { message: "Förnamnet måste ha minst 3 tecken." }),
     lastName: z.string().min(3, "Efternamnet måste ha minst 3 tecken.").trim(),
+    apartmentNumber: z
+      .string()
+      .max(4, "Lägenhetsnumret har högst 4 siffror.")
+      .trim(),
+    phoneNumber: z
+      .string()
+      .length(10, { message: "Telefonnummret måste vara 10 tecken långt" })
+      .trim(),
+    email: z.string().email({ message: "Ogiltig e-postadress" }),
     userName: z
       .string()
       .min(6, { message: "Användarnamn måste ha minst 6 tecken" })
       .max(20, { message: "Användarnamnet får ha högst 20 tecken" })
       .trim(),
-    email: z.string().email({ message: "Ogiltig e-postadress" }),
     password: z
       .string()
       .min(8, {

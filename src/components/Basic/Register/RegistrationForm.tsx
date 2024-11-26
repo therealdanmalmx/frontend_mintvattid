@@ -1,20 +1,73 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { schema, type FormFields } from "./validations";
+import axios from "axios";
+import endpoints from "../../../enpoints";
+import { useState } from "react";
 
 const FormFields = "./validations.ts";
 
 const RegistrationForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitted },
+    formState: { errors },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
-    console.log({ data });
+  const onSubmit: SubmitHandler<FormFields> = async (data, e) => {
+    e?.preventDefault();
+
+    let userInformation = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      apartmentNumber: data.apartmentNumber,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      userName: data.userName,
+      password: data.password,
+    };
+
+    setIsLoading(true);
+
+    if (!Object.keys(errors).length) {
+      try {
+        await axios.post(
+          endpoints.user.create(),
+          JSON.stringify(userInformation),
+          {
+            headers: { "Content-Type": "application/json" },
+          },
+        );
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response) {
+          const { message } = error.response.data;
+
+          // Check specific backend validation errors
+          if (message === "Det användarnamnet finns redan registrerad.") {
+            console.log("Användarnamnet är redan registrerat.");
+          } else if (message === "Den emailadressen finns redan registrerad.") {
+            console.log("E-postadressen är upptagen.");
+          } else {
+            console.log("Ett oväntat fel inträffade.");
+          }
+        }
+        setIsLoading(false);
+      } finally {
+        userInformation = {
+          apartmentNumber: "",
+          firstName: "",
+          lastName: "",
+          phoneNumber: "",
+          userName: "",
+          email: "",
+          password: "",
+        };
+        setIsLoading(false);
+      }
+    }
   };
 
   return (
@@ -48,6 +101,36 @@ const RegistrationForm = () => {
         {errors.lastName && (
           <span className="mt-2 text-xs text-red-700">
             {errors.lastName.message}
+          </span>
+        )}
+        <label className="form-control">
+          <div className="label py-0">
+            <span className="label-text font-bold">Lägenhetsnummer</span>
+          </div>
+          <input
+            {...register("apartmentNumber", { required: true })}
+            type="text"
+            className="input input-bordered h-10 text-sm focus:outline-none focus:ring-0"
+          />
+        </label>
+        {errors.apartmentNumber && (
+          <span className="mt-2 text-xs text-red-700">
+            {errors.apartmentNumber.message}
+          </span>
+        )}
+        <label className="form-control">
+          <div className="label py-0">
+            <span className="label-text font-bold">Mobilnummer</span>
+          </div>
+          <input
+            {...register("phoneNumber", { required: true })}
+            type="text"
+            className="input input-bordered h-10 text-sm focus:outline-none focus:ring-0"
+          />
+        </label>
+        {errors.phoneNumber && (
+          <span className="mt-2 text-xs text-red-700">
+            {errors.phoneNumber.message}
           </span>
         )}
         <label className="form-control">
@@ -117,10 +200,16 @@ const RegistrationForm = () => {
       <button
         type="submit"
         className="btn btn-primary mt-8 w-full text-white md:mt-8"
-        // disabled={isSubmitted}
+        disabled={isLoading}
       >
         {" "}
-        {isSubmitted ? "Registering..." : "Registrera dig"}
+        {isLoading ? (
+          <svg className="mr-3 h-5 w-5 animate-spin" viewBox="0 0 24 24">
+            Registering...
+          </svg>
+        ) : (
+          "Registrera dig"
+        )}
       </button>
     </form>
   );

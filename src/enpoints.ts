@@ -51,7 +51,7 @@ export const endpoints = {
     base: `${baseURL}/user`,
     getAll: () => `${baseURL}/user`,
     getById: (id: string) => `${baseURL}/user/${id}`,
-    create: () => `${baseURL}/user`,
+    create: () => `${baseURL}/user/register`,
     update: (id: string) => `${baseURL}/user/${id}`,
     delete: (id: string) => `${baseURL}/user/${id}`,
   },
