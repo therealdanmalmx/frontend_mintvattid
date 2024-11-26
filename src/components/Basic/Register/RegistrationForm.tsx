@@ -4,11 +4,14 @@ import { schema, type FormFields } from "./validations";
 import axios from "axios";
 import endpoints from "../../../enpoints";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const FormFields = "./validations.ts";
 
 const RegistrationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
+
   const {
     register,
     handleSubmit,
@@ -20,7 +23,7 @@ const RegistrationForm = () => {
   const onSubmit: SubmitHandler<FormFields> = async (data, e) => {
     e?.preventDefault();
 
-    let userInformation = {
+    const userInformation = {
       firstName: data.firstName,
       lastName: data.lastName,
       apartmentNumber: data.apartmentNumber,
@@ -41,6 +44,7 @@ const RegistrationForm = () => {
             headers: { "Content-Type": "application/json" },
           },
         );
+        navigate("/login");
       } catch (error) {
         if (axios.isAxiosError(error) && error.response) {
           const { message } = error.response.data;
@@ -56,15 +60,6 @@ const RegistrationForm = () => {
         }
         setIsLoading(false);
       } finally {
-        userInformation = {
-          apartmentNumber: "",
-          firstName: "",
-          lastName: "",
-          phoneNumber: "",
-          userName: "",
-          email: "",
-          password: "",
-        };
         setIsLoading(false);
       }
     }

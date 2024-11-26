@@ -6,6 +6,7 @@ import RegisterUser from "./components/Basic/Register/RegisterUser";
 import axios from "axios";
 import endpoints from "./enpoints";
 import { BrowserRouter as Router, Route, Routes } from "react-router";
+import LoginUser from "./components/LoginUser";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -26,7 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<RegisterUser />} />
-          {/* Add more routes here as needed */}
+          <Route path="/login" element={<LoginUser />} />
         </Routes>
       </div>
     </Router>
