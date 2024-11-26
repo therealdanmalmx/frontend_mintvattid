@@ -15,6 +15,7 @@ const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormFields>({
     resolver: zodResolver(schema),
@@ -60,6 +61,7 @@ const RegistrationForm = () => {
         }
         setIsLoading(false);
       } finally {
+        reset();
         setIsLoading(false);
       }
     }
