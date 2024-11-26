@@ -5,6 +5,7 @@ import axios from "axios";
 import endpoints from "../../../enpoints";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 const FormFields = "./validations.ts";
 
@@ -45,6 +46,8 @@ const RegistrationForm = () => {
             headers: { "Content-Type": "application/json" },
           },
         );
+        toast.success("Användare skapad!");
+        reset();
         navigate("/login");
       } catch (error) {
         if (axios.isAxiosError(error) && error.response) {
@@ -53,15 +56,16 @@ const RegistrationForm = () => {
           // Check specific backend validation errors
           if (message === "Username exists") {
             console.log("Användarnamnet är redan registrerat.");
+            toast.error("Användarnamnet är redan registrerat.");
           } else if (message === "Email exists") {
             console.log("E-postadressen är redan registrerad.");
+            toast.error("E-postadressen är redan registrerad.");
           } else {
             console.log("Ett oväntat fel inträffade.");
           }
         }
         setIsLoading(false);
       } finally {
-        reset();
         setIsLoading(false);
       }
     }
