@@ -29,7 +29,7 @@ const RegisterUser = () => {
       {/* Right side - Registration Form */}
       <div className="flex w-full items-start justify-center px-8 py-2 md:items-center lg:w-1/2">
         <div className="w-full max-w-md">
-          <h1 className="my-8 text-center text-3xl font-bold md:my-0">
+          <h1 className="my-8 text-center text-3xl font-bold md:my-12">
             Skapa ett konto
           </h1>
           <RegistrationForm />
