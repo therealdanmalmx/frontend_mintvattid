@@ -10,7 +10,7 @@ const FormFields = "./validations.ts";
 
 const RegistrationForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   const {
     register,
@@ -50,10 +50,10 @@ const RegistrationForm = () => {
           const { message } = error.response.data;
 
           // Check specific backend validation errors
-          if (message === "Det användarnamnet finns redan registrerad.") {
+          if (message === "Username exists") {
             console.log("Användarnamnet är redan registrerat.");
-          } else if (message === "Den emailadressen finns redan registrerad.") {
-            console.log("E-postadressen är upptagen.");
+          } else if (message === "Email exists") {
+            console.log("E-postadressen är redan registrerad.");
           } else {
             console.log("Ett oväntat fel inträffade.");
           }
