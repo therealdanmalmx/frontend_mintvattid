@@ -26,7 +26,7 @@ function App() {
       <div className="flex h-screen w-full flex-col">
         <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Toaster
-          position="top-center"
+          position="bottom-right"
           toastOptions={{
             error: { duration: 3000 },
             success: { duration: 5000 },
